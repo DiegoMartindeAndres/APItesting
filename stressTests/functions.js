@@ -1,6 +1,6 @@
 var crypto = require('crypto');
 var fs = require('file-system');
-var config = require('../../config');
+var config = require('../config');
 
 module.exports = {
   processId : processId,
@@ -157,7 +157,7 @@ function setParametersSign(requestParams,context, ee, next) {
   var contract_id = url.substring(49);
   var formData = {
     'contract_id': contract_id,
-    'user_hash': user_hash,
+    'user_tx_hash': user_hash,
     'user_name': 'pepe',
     'user_surname': 'perez'
   };

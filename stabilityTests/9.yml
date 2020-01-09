@@ -5,10 +5,10 @@ config:
       fields:
         - "contract_id"
       order: "sequence"
-    - path: "./digitalId.csv"
-      fields:
-        - "user_tx_hash"
-      order: "sequence"
+    #- path: "./digitalId.csv"
+     # fields:
+      #  - "user_tx_hash"
+      #order: "sequence"
   phases:
     - duration: 300
       arrivalCount: 100
@@ -26,7 +26,7 @@ scenarios:
         afterResponse: "processContractData"
     - post: 
         url: "/v2/es/contracts/{{ contract_id }}"
-        user_hash : "{{ user_tx_hash }}"
+        user_hash : "0x3a82a8e8c4cd6e4b45e0365b517edd05f89dba8ff7302dc0c8f6bb123e2a1a87"
         beforeRequest: "setParametersSign"
         afterResponse: "logHeaders"
       

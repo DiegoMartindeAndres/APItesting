@@ -57,7 +57,6 @@ describe("Creating a contract...", function () {
         .field('number_signatories', number_signatories)
         .attach('contract', fs.readFileSync(file), 'test.pdf')
         .end(function (err, res) {
-          console.log(res.body);
           expect(res).to.be.json;
           expect(res).to.have.status(400);
           expect(res.body).to.have.property('type', 'invalid');
