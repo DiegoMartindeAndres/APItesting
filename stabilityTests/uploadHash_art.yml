@@ -1,0 +1,17 @@
+config:
+  target: 'https://test.api.nodalblock.com'
+  phases:
+    - duration: 10
+      #arrivalRate: 20
+      arrivalCount: 50
+      name: "Test with expected load"
+  processor: "./functions.js"
+scenarios:
+  - flow: 
+    - post:
+        url: "/v2/es/hash"
+        beforeRequest: "setUploadHashParams"
+        afterResponse: "logHeaders"
+
+          
+      

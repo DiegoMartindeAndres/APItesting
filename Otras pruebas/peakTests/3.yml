@@ -1,0 +1,32 @@
+config:
+  target: 'https://test.api.nodalblock.com'
+  files: 
+    - "@./loadTests/test.pdf"
+  phases:
+    - duration: 20
+      arrivalRate: 5
+      name: "Warm up phase"
+    - duration: 10
+      arrivalRate: 5
+      rampTo: 20
+      name: "Increased rate"
+    - duration: 10
+      arrivalRate: 2
+      name: "Reduced rate"
+    - duration: 10
+      arrivalRate: 2
+      rampTo: 30
+      name: "Increased rate"
+    - duration: 10
+      arrivalRate: 5
+      name: "Sustained low rate"
+  processor: "./functions.js"
+scenarios:
+  - flow: 
+    - post:
+        url: "/v2/es/documents"
+        beforeRequest: "setUploadParams"
+        afterResponse: "processData"
+
+          
+      

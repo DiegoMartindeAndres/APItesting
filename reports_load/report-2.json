@@ -1,0 +1,174 @@
+{
+  "aggregate": {
+    "timestamp": "2019-12-23T11:35:14.230Z",
+    "scenariosCreated": 50,
+    "scenariosCompleted": 50,
+    "requestsCompleted": 50,
+    "latency": {
+      "min": 3422.5,
+      "max": 5441.4,
+      "median": 3659,
+      "p95": 5016.2,
+      "p99": 5441.4
+    },
+    "rps": {
+      "count": 50,
+      "mean": 3.48
+    },
+    "scenarioDuration": {
+      "min": 4182,
+      "max": 6548.5,
+      "median": 4878.1,
+      "p95": 6149.6,
+      "p99": 6548.5
+    },
+    "scenarioCounts": {
+      "0": 50
+    },
+    "errors": {},
+    "codes": {
+      "201": 50
+    },
+    "matches": 0,
+    "customStats": {},
+    "counters": {},
+    "scenariosAvoided": 0,
+    "phases": [
+      {
+        "duration": 10,
+        "arrivalCount": 50,
+        "name": "Test with expected load"
+      }
+    ]
+  },
+  "intermediate": [
+    {
+      "timestamp": "2019-12-23T11:35:09.518Z",
+      "scenariosCreated": 49,
+      "scenariosCompleted": 24,
+      "requestsCompleted": 26,
+      "latency": {
+        "min": 3422.5,
+        "max": 4160.8,
+        "median": 3579.4,
+        "p95": 3945.8,
+        "p99": 4160.8
+      },
+      "rps": {
+        "count": 49,
+        "mean": 5.07
+      },
+      "scenarioDuration": {
+        "min": 4490.3,
+        "max": 4984.9,
+        "median": 4717.5,
+        "p95": 4942.7,
+        "p99": 4984.9
+      },
+      "scenarioCounts": {
+        "0": 49
+      },
+      "errors": {},
+      "codes": {
+        "201": 26
+      },
+      "matches": 0,
+      "latencies": [
+        3695447701,
+        3618006100,
+        3703685500,
+        3628079800,
+        3591093400,
+        3527101399,
+        3557912600,
+        3582007400,
+        3587622100,
+        3601393300,
+        3576698900,
+        3643232900,
+        3525281700,
+        3468880900,
+        3488417200,
+        3515882700,
+        3469818800,
+        3422527299,
+        3486652400,
+        3513292600,
+        3522662101,
+        3468884500,
+        3674843500,
+        3685458401,
+        3892092300,
+        4160832800
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 25,
+      "pendingRequests": 23,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-12-23T11:35:14.185Z",
+      "scenariosCreated": 1,
+      "scenariosCompleted": 26,
+      "requestsCompleted": 24,
+      "latency": {
+        "min": 3463.7,
+        "max": 5441.4,
+        "median": 4430,
+        "p95": 5416.7,
+        "p99": 5441.4
+      },
+      "rps": {
+        "count": 1,
+        "mean": 0.22
+      },
+      "scenarioDuration": {
+        "min": 4182,
+        "max": 6548.5,
+        "median": 5407.9,
+        "p95": 6445.9,
+        "p99": 6548.5
+      },
+      "scenarioCounts": {
+        "0": 1
+      },
+      "errors": {},
+      "codes": {
+        "201": 24
+      },
+      "matches": 0,
+      "latencies": [
+        4782288499,
+        4494787100,
+        4768809799,
+        4380020900,
+        4818236001,
+        5441380701,
+        4664417700,
+        4620255899,
+        4418289999,
+        5406071300,
+        5016153701,
+        4294068600,
+        4558101501,
+        4441741600,
+        4245432199,
+        4659924000,
+        3850657999,
+        4131887201,
+        3807104700,
+        3608823500,
+        3559450001,
+        3487517400,
+        3463739599,
+        3477462399
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    }
+  ]
+}

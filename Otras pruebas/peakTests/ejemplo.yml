@@ -1,0 +1,59 @@
+config:
+  target: "http://"
+  payload:
+      # path relativo a la localización del script de test
+      path: "users.csv" #datos de pwd..
+      fields:
+        - "username"
+        - "password"
+  phases:
+    - duration: 10 #duracion de toda la fase
+      arrivalRate: 1 #peticiones/sec durante duracion definida
+  environments: #definir particularidades de dsitintos entornos ejecucion
+    production:
+      target: "http://wontresolve.prod:44321" #url de endpoint a probar, base url del servidor que se ataca
+      phases:
+        - duration: 120
+          arrivalRate: 10
+    staging:
+      target: "http://127.0.0.1:3003"
+      phases:
+        - duration: 1200
+          arrivalRate: 20
+          rampTo: 50 #num que se quiere alcanzar a prtr de definido en arrivalRate en periodo establecidp
+  scenarios: #flujo peticiones a disintos endpoints
+    - flow: #array of operations that the virtual user will perform
+        - log: "Realizamos el login"
+        - post:
+            url: "/auth"
+            json:
+              username: "{{ username }}"
+              password: "{{ password }}"
+        - post:
+            url: "/search"
+            body: "kw={{ keywords }}"
+            capture:
+              json: "$.results[0].id"
+              as: "id"
+        - get:
+            url: "/details/{{ id }}"
+            headers:
+              X-My-Header: "123"
+        - post:
+            url: "/cart"
+            json:
+              productId: "{{ id }}"
+
+# OTRO EJEMPLO:one possible scenario for every new virtual user to pick from, which consists of one GET request.
+config:
+  target: 'https://artillery.io'
+  phases:
+    - duration: 60
+      arrivalRate: 20
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow: 
+    - get:
+        url: "/docs"

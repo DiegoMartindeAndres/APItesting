@@ -1,0 +1,18 @@
+config:
+  target: 'https://test.api.nodalblock.com'
+  files: 
+    - "@./stressTests/test.pdf"
+  phases:
+    - duration: 300
+      arrivalCount: 100
+      name: "Stability test"
+  processor: "./functions.js"
+scenarios:
+  - flow: 
+    - post:
+        url: "/v2/es/documents"
+        beforeRequest: "setUploadParams"
+        afterResponse: "processData"
+
+          
+      

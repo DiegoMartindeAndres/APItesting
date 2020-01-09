@@ -1,0 +1,31 @@
+config:
+  target: 'https://test.api.nodalblock.com'
+  payload:
+    path: "./document.csv"
+    fields:
+      - "document_id"
+      - "tx_hash"
+    order: "sequence"
+  phases:
+    - duration: 300
+      arrivalCount: 100
+      name: "Stability test"
+  processor: "./functions.js"
+scenarios:
+  - flow: 
+    - get:
+        url: "/v2/es/documents/{{ document_id }}"
+        beforeRequest: "setHeadersParameters"
+        afterResponse : 'logHeaders'
+    - get:
+        url: "/v2/es/documents/{{ document_id }}/certificate"
+        beforeRequest: "setHeadersParameters"
+        afterResponse : 'logHeaders'
+    - get:
+        url: "/v2/es/documents/{{ document_id }}/infocertificate"
+        beforeRequest: "setHeadersParameters"
+        afterResponse : 'logHeaders'
+
+
+          
+      

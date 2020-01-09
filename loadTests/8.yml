@@ -1,0 +1,26 @@
+config:
+  target: 'https://test.api.nodalblock.com'
+  payload:
+    path: "./document.csv"
+    fields:
+      - "document_id"
+    order: "sequence"
+  phases:
+    - duration: 10
+      arrivalCount: 50
+      name: "Test with expected load"
+  processor: "./functions.js"
+scenarios:
+  - flow: 
+    - get:
+        url: "/v2/es/documents/{{ document_id }}"
+        beforeRequest: "setHeadersParameters"
+        afterResponse : 'logHeaders'
+    - delete:
+        url: "/v2/es/documents/{{ document_id }}"
+        beforeRequest: "setHeadersParameters"
+        afterResponse : 'deleteDocumentData'
+
+
+          
+      

@@ -1,0 +1,19 @@
+config:
+  target: 'https://test.api.nodalblock.com'
+  phases:
+    - duration: 300
+      arrivalCount: 100
+      name: "Stability test"
+  processor: "./functions.js"
+scenarios:
+  - flow: 
+    - post:
+        url: "/v2/es/id/nodalblock"
+        beforeRequest: "setParametersHash"
+    - post:
+        url: "/v2/es/documents"
+        beforeRequest: "setUploadParams"
+        afterResponse: "processData"
+
+          
+      

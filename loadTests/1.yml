@@ -1,0 +1,16 @@
+config:
+  target: 'https://test.api.nodalblock.com'
+  phases:
+    - duration: 10
+      arrivalCount: 50
+      name: "Test with expected load"
+  processor: "./functions.js"
+scenarios:
+  - flow: 
+    - post:
+        url: "/v2/es/id/nodalblock"
+        beforeRequest: "setParametersHash"
+        afterResponse: "processId"
+
+          
+      

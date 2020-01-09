@@ -1,0 +1,35 @@
+config:
+  target: 'https://test.api.nodalblock.com'
+  payload:
+    - path: "./contract.csv"
+      fields:
+        - "contract_id"
+      order: "sequence"
+    - path: "./digitalId.csv"
+      fields:
+        - "user_tx_hash"
+      order: "sequence"
+  phases:
+    - duration: 100
+      arrivalRate: 0
+      rampTo: 50
+      name: "Stress test incrementing load"
+  processor: "./functions.js"
+scenarios:
+  - flow: 
+    - post:
+        url: "/v2/es/id/nodalblock"
+        beforeRequest: "setParametersHash"
+        afterResponse: "processId"
+    - post:
+        url: "/v2/es/contracts"
+        beforeRequest: "setParametersContract"
+        afterResponse: "processContractData"
+    - post: 
+        url: "/v2/es/contracts/{{ contract_id }}"
+        user_hash : "{{ user_tx_hash }}"
+        beforeRequest: "setParametersSign"
+        afterResponse: "logHeaders"
+
+          
+      

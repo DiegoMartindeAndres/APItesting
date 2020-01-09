@@ -1,0 +1,28 @@
+config:
+  target: 'https://test.api.nodalblock.com'
+  payload:
+    path: "./document.csv"
+    fields:
+      - "document_id"
+      #- "tx_hash"
+    order: "sequence"
+  phases:
+    - duration: 100
+      arrivalRate: 0
+      rampTo: 50
+      name: "Stress test incrementing load"
+  processor: "./functions.js"
+scenarios:
+  - flow: 
+    - get:
+        url: "/v2/es/documents/{{ document_id }}"
+        beforeRequest: "setHeadersParameters"
+        afterResponse : 'logHeaders'
+    - delete:
+        url: "/v2/es/documents/{{ document_id }}"
+        beforeRequest: "setHeadersParameters"
+        afterResponse : 'deleteDocumentData'
+
+
+          
+      

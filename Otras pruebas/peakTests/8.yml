@@ -1,0 +1,40 @@
+config:
+  target: 'https://test.api.nodalblock.com'
+  payload:
+    path: "./document.csv"
+    fields:
+      - "document_id"
+    order: "sequence"
+  phases:
+    - duration: 20
+      arrivalRate: 5
+      name: "Warm up phase"
+    - duration: 10
+      arrivalRate: 5
+      rampTo: 20
+      name: "Increased rate"
+    - duration: 10
+      arrivalRate: 2
+      name: "Reduced rate"
+    - duration: 10
+      arrivalRate: 2
+      rampTo: 30
+      name: "Increased rate"
+    - duration: 10
+      arrivalRate: 5
+      name: "Sustained low rate"
+  processor: "./functions.js"
+scenarios:
+  - flow: 
+    - get:
+        url: "/v2/es/documents/{{ document_id }}"
+        beforeRequest: "setHeadersParameters"
+        afterResponse : 'logHeaders'
+    - delete:
+        url: "/v2/es/documents/{{ document_id }}"
+        beforeRequest: "setHeadersParameters"
+        afterResponse : 'deleteDocumentData'
+
+
+          
+      
